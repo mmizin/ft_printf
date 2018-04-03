@@ -8,7 +8,7 @@
 int main()
 {
 	setlocale(LC_ALL, "");
-	ft_printf("|%5% 5%|\n");
+
 //	printf("\norigin_return = %d", printf("|%05.2%|") - 1);
 //	printf("\n");
 //	printf("%i\n", MB_CUR_MAX);
@@ -305,7 +305,7 @@ int main()
 //		printf("\norigin_return = %d", printf("\n%-2.2s", "blue") - 1);
 //		printf("\n");
 	//
-//		printf("\n");
-//		printf(
+	ft_printf("|%5%|\n");
+	printf("|%5%|\n");
 	return (0);
 }
