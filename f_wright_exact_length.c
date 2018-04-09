@@ -17,6 +17,8 @@ int	f_w_e_l(char c, int length)
 	int i;
 	char buff[length];
 
+	if (length < 0)
+	    length = 0;
 	i = length;
 	while (length)
 		buff[--length] = c;

@@ -14,11 +14,12 @@ int f_perc_S_big(va_list ap, const char **format, t_var *v)
 	wchar_t res;
 
 	res = '\0';
-	v->w = f_find_weight(format, 's', ap);
-	f_find_precision(format, 's', ap, v);
+	v->ts == l ? (v->res = 's') : (v->res  = 'S');
+	v->w = f_find_weight(format, v->res, ap);
+	f_find_precision(format, v->res, ap, v);
 	if (!(str = va_arg(ap, wchar_t *)))
 	{
-		(**format != '\0' && (**format == v->res || **format == 's')) && (*format)++;
+		(**format != '\0' && (**format == v->res || **format == v->res)) && (*format)++;
 		return (write(1, "(null)", 6) && (v->bp += 6));
 	}
 	f_find_bytes(v, str);
@@ -31,7 +32,7 @@ int f_perc_S_big(va_list ap, const char **format, t_var *v)
 	if (v->w > v->l)
 		(v->bp += f_w_e_l(' ', v->w - v->l));
 	else if (v->w < 0)
-			v->sign = (v->w + v->l) > 0 ? v->w + v->l : (v->w + v->l) * -1;
+			v->sign = (v->w * -1) > 0 ? (v->w * -1) - v->l : 0;
 	f_S_ls_print(v, str, res);
 	(**format != '\0') && (*format)++;
 	return (1);
@@ -56,7 +57,7 @@ static	int		f_find_weight(const char **format, char c, va_list ap)
 		if (**format >= '1' && **format <= '9')
 		{
 			width = ft_atoi(*format) * sign;
-			while (**format >= '0' && **format <= '9')
+			while ((**format >= '0' && **format <= '9') || **format == 'l')
 				(*format)++;
 			return (width);
 		}

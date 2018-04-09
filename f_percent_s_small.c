@@ -92,25 +92,43 @@ static	int		f_find_precision(const char **format, char c, va_list ap)
 
 static	int		f_if_handler(t_var *v, va_list ap)
 {
-	if (v->w > v->l && v->p >= v->l)
-		(v->bp += f_w_e_l(' ', v->w - v->l))
-		&& (v->bp += write(1, va_arg(ap, char *), v->l));
-	else if (v->w >= 0 && v->p > v->l && v->w <= v->l)
+	int tmp;
+
+	if (v->p == 0 || v->p <= v->l)
+		v->l = v->p;
+	if (v->w >=0 && v->w <= v->l)
+		v->w = v->l;
+	if (v->w < 0)
+		tmp = (v->w * -1) > v->l ? (v->w * -1) - v->l : 0;
+	if (v->w >= 0 && v->w >= v->l)
+	{
+		v->bp += f_w_e_l(' ', v->w - v->l);
 		v->bp += write(1, va_arg(ap, char *), v->l);
-	else if (v->w >= 0 && v->p < v->l && v->w >= v->l)
-		(v->bp += f_w_e_l(' ', v->w - v->p))
-		&& (v->bp += write(1, va_arg(ap, char *), v->p));
-	else if (v->w < 0 && v->p <= v->l && (v->w * -1) >= v->p)
-		(v->bp += write(1, va_arg(ap, char *), v->p))
-		&& (v->bp += f_w_e_l(' ', (v->w * -1) - v->p));
-	else if (v->w < 0 && v->p > v->l && (v->w * -1) >= v->p)
-		(v->bp += write(1, va_arg(ap, char *), v->l))
-		&& (v->bp += f_w_e_l(' ', (v->w * -1) - v->l));
-	else if (v->w < 0 && v->p <= v->l && (v->w * -1) < v->p)
-		v->bp += write(1, va_arg(ap, char *), v->p);
-	else if (v->w < 0 && v->p > v->l && (v->w * -1) < v->p)
+	}
+	else if (v->w < 0)
+	{
 		v->bp += write(1, va_arg(ap, char *), v->l);
-	else if ((v->w >= 0 && v->p <= v->l && v->w <= v->l) || (v->w == 0 && v->p == 0))
-		v->bp += write(1, va_arg(ap, char *), v->p);
+		v->bp += f_w_e_l(' ', tmp);
+	}
+//	if (v->w > v->l && v->p >= v->l)
+//		(v->bp += f_w_e_l(' ', v->w - v->l))
+//		&& (v->bp += write(1, va_arg(ap, char *), v->l));
+//	else if (v->w >= 0 && v->p > v->l && v->w <= v->l)
+//		v->bp += write(1, va_arg(ap, char *), v->l);
+//	else if (v->w >= 0 && v->p < v->l && v->w >= v->l)
+//		(v->bp += f_w_e_l(' ', v->w - v->p))
+//		&& (v->bp += write(1, va_arg(ap, char *), v->p));
+//	else if (v->w < 0 && v->p <= v->l && (v->w * -1) >= v->p)
+//		(v->bp += write(1, va_arg(ap, char *), v->p))
+//		&& (v->bp += f_w_e_l(' ', (v->w * -1) - v->p));
+//	else if (v->w < 0 && v->p > v->l && (v->w * -1) >= v->p)
+//		(v->bp += write(1, va_arg(ap, char *), v->l))
+//		&& (v->bp += f_w_e_l(' ', (v->w * -1) - v->l));
+//	else if (v->w < 0 && v->p <= v->l && (v->w * -1) < v->p)
+//		v->bp += write(1, va_arg(ap, char *), v->p);
+//	else if (v->w < 0 && v->p > v->l && (v->w * -1) < v->p)
+//		v->bp += write(1, va_arg(ap, char *), v->l);
+//	else if ((v->w >= 0 && v->p <= v->l && v->w <= v->l) || (v->w == 0 && v->p == 0))
+//		v->bp += write(1, va_arg(ap, char *), v->p);
 	return (1);
 }

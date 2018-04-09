@@ -24,10 +24,10 @@
 //flags |= hash;
 //
 //flags & hash
-typedef enum	e_size_specificators
+typedef enum			e_size_specificators
 {
 	hh, h, l, ll, j, z
-}				t_ts;
+}						t_ts;
 
 typedef struct			s_main
 {
@@ -42,7 +42,12 @@ typedef struct			s_main
 	char 				res;
 	const char 			*begin;
 	t_ts				ts;
-
+	int					pl;			/*plus*/
+	int					min;	   /*minus*/
+	int					hes;
+	int					spa;
+	int					zer;
+	int                 tmp;
 }						t_var;
 
 
@@ -57,5 +62,11 @@ int		f_w_e_l(char c, int length);
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-
+int     f_from_per_to_per(va_list ap, const char **format, t_var *v);
+int     f_perc_c_small(va_list ap, const char **format, t_var *v);
+int     f_perc_C_big(va_list ap, const char **format, t_var *v);
+int     f_perc_d_small(va_list ap, const char **format, t_var *v);
+int     f_sign(const char **format, t_var *v);
+char    *f_itoa(int number);
+void	f_handler_for_d_and_i_flags(va_list ap, t_var *v, int v_arg, char *argv);
 #endif
