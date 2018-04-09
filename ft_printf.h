@@ -33,7 +33,7 @@ typedef struct			s_main
 {
 	int					bp;  	 	   /*byte write returned*/
 	int 				p;		   	  /*precision*/
-	int					w;	     	 /*width*/
+	long long int		w;	     	 /*width*/
 	int					l;		    /*bytes of char or str*/
 	int 				c;		   /*count*/
 	int					cur_max;  /*if locale  = 4 else = 1*/
@@ -47,7 +47,7 @@ typedef struct			s_main
 	int					hes;
 	int					spa;
 	int					zer;
-	int                 tmp;
+	long long int		tmp;
 }						t_var;
 
 
@@ -67,6 +67,8 @@ int     f_perc_c_small(va_list ap, const char **format, t_var *v);
 int     f_perc_C_big(va_list ap, const char **format, t_var *v);
 int     f_perc_d_small(va_list ap, const char **format, t_var *v);
 int     f_sign(const char **format, t_var *v);
-char    *f_itoa(int number);
-void	f_handler_for_d_and_i_flags(va_list ap, t_var *v, int v_arg, char *argv);
+char    *f_itoa(long long int number);
+void	f_for_d_and_i_flags(t_var *v, long long int v_arg, char *argv);
+int     f_spec_the_size_for_d_and_i(long long int *v_arg, t_var *v);
+int     f_perc_x_X(va_list ap, const char **format, t_var *v);
 #endif

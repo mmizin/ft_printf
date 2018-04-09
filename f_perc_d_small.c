@@ -6,23 +6,31 @@
 
 static int		f_find_weight(const char **format, char c, va_list ap, t_var *v);
 static int		f_find_precision(const char **format, char c, va_list ap);
-static int 		f_width(int v_arg);
+static int 		f_width(long long int v_arg);
 
 int         	f_perc_d_small(va_list ap, const char **format, t_var *v)
 {
-	int		v_arg;
-	char	*argv;
+	long long int	v_arg;
+	char			*argv;
 
     f_sign(format, v);
 	v->w = f_find_weight(format, v->res, ap, v);
-	if ((v->min && v->w > 0) && (v->w *= -1));
+	if ((v->min && v->w > 0) && (v->w *= -1))
+		;
 	v->p = f_find_precision(format, v->res, ap);
-	v_arg  = va_arg(ap, int);
+	if (v->ts != l && v->ts != ll && v->ts != j)
+        v_arg  = va_arg(ap, int);
+	else
+		v_arg  = va_arg(ap, long long int);
+	f_spec_the_size_for_d_and_i(&v_arg, v);
 	v->l = f_width(v_arg);
 	argv = f_itoa(v_arg);
-	f_handler_for_d_and_i_flags(ap, v, v_arg, argv);
+	f_for_d_and_i_flags(v, v_arg, argv);
 	free(argv);
+	while (**format != v->res)
+		(*format)++;
 	(**format != '\0') && (*format)++;
+    v->ts = 192;
     return (1);
 }
 
@@ -33,10 +41,11 @@ static int		f_find_weight(const char **format, char c, va_list ap, t_var *v)
 	sign = 1;
 	while (format && **format != c && **format != '.')
 	{
-		if (**format == '-' && (sign = -1));
+		if (**format == '-' && (sign = -1))
+			;
 		if (**format == '*')
 		{
-			(v->w = va_arg(ap, int)) && (v->w = v->w < 0 ? v->w : v->w * sign);
+			(v->w = va_arg(ap, long long int)) && (v->w = v->w < 0 ? v->w : v->w * sign);
 			return (v->w);
 		}
 		if (**format >= '1' && **format <= '9')
@@ -79,7 +88,7 @@ static	int		f_find_precision(const char **format, char c, va_list ap)
 		return (-1);
 }
 
-static int 		f_width(int v_arg)
+static int 		f_width(long long int v_arg)
 {
     int count;
 

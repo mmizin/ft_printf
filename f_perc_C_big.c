@@ -2,7 +2,6 @@
 // Created by mizman on 04.04.18.
 //
 
-#include <values.h>
 #include "ft_printf.h"
 
 static int	f_find_weight(const char **format, char c, va_list ap);
@@ -17,7 +16,7 @@ int     f_perc_C_big(va_list ap, const char **format, t_var *v)
     v->w = f_find_weight(format, v->res, ap);
     res = va_arg(ap, wint_t);
 	f_find_bytes(v, res);
-	if ((v->i = MB_CUR_MAX) != 6 && v->cur_max == 1) /* DONT FORGET TO CHANGE MB_CUR_MAX TO != 4 */
+	if ((v->i = MB_CUR_MAX) != 4 && v->cur_max == 1)
 	{
 		v->bp = -1;
 		(**format != '\0') && (*format)++;

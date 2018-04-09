@@ -17,11 +17,16 @@ int     f_sign(const char **format, t_var *v)
         (go) && v->c++;
         if (*(v->begin) >= '1' && *(v->begin) <= '9')
             break ;
-        if (*(v->begin) == ' ' && (v->spa = 1));
-        else if (*(v->begin) == '+' && (v->pl = 1));
-        else if (*(v->begin) == '-' && (v->min = 1));
-        else if ((*(v->begin) == '0' && (v->c == 1 || v->c == 2)) && (v->zer = 1));
-        else if (*(v->begin) == '#' && (v->hes = 1));
+        if (*(v->begin) == ' ' && (v->spa = 1))
+            ;
+        else if (*(v->begin) == '+' && (v->pl = 1))
+            ;
+        else if (*(v->begin) == '-' && (v->min = 1))
+            ;
+        else if ((*(v->begin) == '0' && (v->c == 1 || v->c == 2)) && (v->zer = 1))
+            ;
+        else if (*(v->begin) == '#' && (v->hes = 1))
+            ;
         v->begin++;
     }
     return (1 && (v->c = 0));

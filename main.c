@@ -310,26 +310,26 @@ int main()
 //	ft_printf("|%+-10.d|", 123);
 
 //	ft_printf("|%-7d|", 123);
-
-	      printf("|%+ 010d|", -123);
-	printf("\n");
-       ft_printf("|%+ 010d|", -123);
-	printf("\n");
-	      printf("|%+ 010d|", 123);
-	printf("\n");
-	   ft_printf("|%+ 010d|", 123);
-	   printf("\n");
-	      printf("|%+ 010d|", 123);
-	printf("\n");
-	   ft_printf("|%+ 010d|", 123);
-    printf("\n");
-	      printf("|%+ 010d|", -123);
-	printf("\n");
-	   ft_printf("|%+ 010d|", -123);
-
-
+//
+//	      printf("|%10.14ji|", 789789789789789789);
 //	printf("\n");
-//	printf("|%d|", 123);
+//       ft_printf("|%10.14ji|", 789789789789789789);
+//	printf("\n");
+//	      printf("|%10.14ji|", 123);
+//	printf("\n");
+//	   ft_printf("|%10.14ji|", 123);
+//	   printf("\n");
+//	      printf("|%10.14ji|", 123);
+//	printf("\n");
+//	   ft_printf("|%10.14ji|", 123);
+//    printf("\n");
+//	      printf("|%10.14ji|", -123);
+//	printf("\n");
+//	   ft_printf("|%10.14ji|", -123);
+
+
+	printf("\n");
+	printf("|%010.12x|", 14789);
 //	printf("\n");
 //	printf("|%-4d|", 123);
 

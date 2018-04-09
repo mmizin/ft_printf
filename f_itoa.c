@@ -3,7 +3,7 @@
 //
 #include "ft_printf.h"
 
-int     f_len(int number)
+int     f_len(long long int number)
 {
     int count;
 
@@ -18,21 +18,19 @@ int     f_len(int number)
     return (count);
 }
 
-char    *f_itoa(int number)
+char    *f_itoa(long long int number)
 {
     int len;
-    long int num;
     char *new;
 
-    num = (long int) number;
     len = f_len(number);
     if (!(new = (char *) malloc(sizeof(char) * (len + 1))))
         return (NULL);
     new[len] = '\0';
-    if (num < 0)
-        (num = -num);
-    new[--len] = num % 10 + '0';
-    while (num /= 10)
-        new[--len] = num % 10 + '0';
+    if (number < 0)
+        (number = -number);
+    new[--len] = number % 10 + '0';
+    while (number /= 10)
+        new[--len] = number % 10 + '0';
     return (new);
 }
