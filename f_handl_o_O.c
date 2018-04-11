@@ -5,14 +5,14 @@
 #include "ft_printf.h"
 
 static int	f_handl_prec_NULL(t_var *v, unsigned long long int v_arg);
-static int	f_part_one(t_var *v, unsigned long long int v_arg, char *argv);
-static int 	f_part_two(t_var *v, unsigned long long int v_arg, char *argv);
+static int	f_part_one(t_var *v, char *argv);
+static int 	f_part_two(t_var *v, char *argv);
 
 void    f_handl_o_O(t_var *v, unsigned long long int v_arg, char *argv)
 {
     if (f_handl_prec_NULL(v, v_arg))
         return ;
-    if (f_part_one(v, v_arg, argv))
+    if (f_part_one(v, argv))
         return ;
 }
 
@@ -41,7 +41,7 @@ static int 		f_handl_prec_NULL(t_var *v, unsigned long long int v_arg)
     return (0);
 }
 
-static int 		f_part_one(t_var *v, unsigned long long int v_arg, char *argv)
+static int 		f_part_one(t_var *v, char *argv)
 {
     v->tmp = v->w;
 //    if (v_arg < 0)                                                                        /*WARNING "ALWAYS FALSE */
@@ -58,11 +58,11 @@ static int 		f_part_one(t_var *v, unsigned long long int v_arg, char *argv)
     if (v->w >= 0)
         v->w <= v->l ? (v->w = 0) : (v->w -= (v->l + v->spa + v->p + v->min + v->pl));
 
-    f_part_two(v, v_arg, argv);
+    f_part_two(v, argv);
     return (1);
 }
 
-static int 		f_part_two(t_var *v, unsigned long long int v_arg, char *argv)
+static int 		f_part_two(t_var *v, char *argv)
 {
     if (v->w >= 0)
     {

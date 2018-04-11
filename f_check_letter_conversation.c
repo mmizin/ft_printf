@@ -46,19 +46,20 @@ void		f_chk_let_conv(const char **format, va_list ap, t_var *v)
 
 static	char	f_fin_letr(const char *format, t_var *v)
 {
-	v->begin = format;
 	char *res;
 	char res_sp;
-    *format == '%' && format++;
-	while (format && *format)
+
+	*format == '%' && format++;
+	v->begin = format;
+	while (format && *(v->begin))
 	{
-		if ((res = (ft_strchr(CONVERSIONS, *format))) != NULL || *format == '%')
+		if ((res = (ft_strchr(CONVERSIONS, *(v->begin)))) != NULL || *(v->begin) == '%')
 			break;
-		format++;
+		v->begin++;
 	}
 	if (res == NULL)
     {
-        format = v->begin;
+//        format = v->begin;
         return (0);
     }
 
@@ -84,7 +85,8 @@ static	char	f_size_sp(char **res, t_var *v)
 
 static	int		f_init_enum(const char *format, t_var *v, char *res)
 {
-	while ((format && *(v->begin)) && *(v->begin) != *res)
+	v->begin = format;
+	while (*(v->begin) && *(v->begin) != *res)
 	{
 		if ((*(v->begin) == 'l' && *(v->begin + 1) != 'l') && (v->ts = l))
 			break ;

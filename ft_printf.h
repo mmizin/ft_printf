@@ -11,19 +11,7 @@
 # include "wchar.h"
 # include <stdio.h>
 
-//{
-//	none = 0,
-//	plus = 1,
-//	minus = 2,
-//	hash = 4,
-//	space = 8;
-//};
-//
-//flags = none;
-//flags |= plus;
-//flags |= hash;
-//
-//flags & hash
+
 typedef enum			e_size_specificators
 {
 	hh, h, l, ll, j, z

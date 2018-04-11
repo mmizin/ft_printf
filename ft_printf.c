@@ -41,6 +41,5 @@ int		ft_printf(const char *format, ...)
 	f_initialize_struct(&v);
 	f_chk(ap, format, &v);
 	va_end(ap);
-	printf("\nmy_return = %d\n", v.bp);
 	return (v.bp);
 }

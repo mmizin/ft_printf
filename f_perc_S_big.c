@@ -17,6 +17,7 @@ int f_perc_S_big(va_list ap, const char **format, t_var *v)
 	v->ts == l ? (v->res = 's') : (v->res  = 'S');
 	v->w = f_find_weight(format, v->res, ap);
 	f_find_precision(format, v->res, ap, v);
+	str = va_arg(ap, wchar_t *);
 //	if (!(str = va_arg(ap, wchar_t *)))
 //	{
 //		(**format != '\0' && **format == v->res) && (*format)++;				/* UNDEFINED BEHAVIOUR */

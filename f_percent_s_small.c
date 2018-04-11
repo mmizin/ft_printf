@@ -18,8 +18,6 @@ static	int		f_if_handler(t_var *v, char *argv);
 
 int		f_perc_s_small(va_list ap, const char **format, t_var *v)
 {
-	va_list	first;
-	va_list second;
     char    *argv;
 
 	v->w = f_find_weight(format, v->res, ap);

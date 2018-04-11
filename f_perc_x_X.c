@@ -5,7 +5,7 @@
 #include "ft_printf.h"
 
 static int		f_find_weight(const char **format, char c, va_list ap, t_var *v);
-static int		f_find_precision(const char **format, char c, va_list ap, t_var *v);
+static int		f_find_precision(const char **format, char c, va_list ap);
 static int 		f_width(t_var *v, unsigned long long int v_arg);
 
 int     f_perc_x_X(va_list ap, const char **format, t_var *v)
@@ -17,13 +17,13 @@ int     f_perc_x_X(va_list ap, const char **format, t_var *v)
     (tmp = v->res) && (v->ts == l && v->res == 'U') && (tmp = 'u');
     f_sign(format, v);
     v->w = f_find_weight(format, tmp, ap, v);
-    v->p = f_find_precision(format, tmp, ap, v);
+    v->p = f_find_precision(format, tmp, ap);
     if (v->res == 'U')
         v_arg  = va_arg(ap, unsigned long);
-    else if (v->res == 'u' || v->hes)
+    else if (v->res == 'u' || (v->hes && (v->ts != l && v->ts != ll)))
         v_arg  = va_arg(ap, unsigned);
-    else if ((v->ts != ll && v->ts != j))
-        v_arg  = va_arg(ap, unsigned long);
+    else if (v->ts != l && v->ts != ll && v->ts != j)
+        v_arg  = va_arg(ap, unsigned);
     else
         v_arg  = va_arg(ap, unsigned long long int);
     f_spec_the_size_for_x_and_X(&v_arg, v);
@@ -67,7 +67,7 @@ static int		f_find_weight(const char **format, char c, va_list ap, t_var *v)
     return (0);
 }
 
-static	int		f_find_precision(const char **format, char c, va_list ap, t_var *v)
+static	int		f_find_precision(const char **format, char c, va_list ap)
 {
     int res;
     int check;

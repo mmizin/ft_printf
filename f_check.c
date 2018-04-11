@@ -18,6 +18,7 @@ void	f_chk(va_list ap, const char *format, t_var *v)
 {
 	while (format && *format)
 	{
+		f_reset_init(v);
 		if (f_no_perc_at_all(&format, v))
 			return ;
 		f_check_any_letter_init(ap, &format, v);

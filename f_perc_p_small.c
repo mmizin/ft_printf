@@ -13,9 +13,12 @@ int     f_perc_p_small(va_list ap, const char **format, t_var *v)
     x = va_arg(ap, void *);
     res = ft_itoa_base((unsigned long long)x, 16, v->res);
     i = ft_strlen(res);
-    (v->bp =+ write(1, "0x", 2)) && (v->bp += write (1, res, i));
+    v->bp += write(1, "0x", 2);
+    v->bp += write (1, res, i);
     while (**format != v->res)
         (*format)++;
     (**format != '\0') && (*format)++;
+    free(res);
+    f_reset_init(v);
     return (1);
 }

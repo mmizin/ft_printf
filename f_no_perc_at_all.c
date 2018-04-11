@@ -15,13 +15,13 @@
 int		f_no_perc_at_all(const char **format, t_var *v)
 {
 	v->begin = *format;
-	v->c = 0;
+	// v->c = 0;
 	while (**format)
 	{
 		if (**format == '%' && *(*format + 1) == '%')
 		{
-			(v->c) && write(1, v->begin, v->c);
-			write(1, "%", 1) && v->bp++;
+			(v->c) && (v->bp += write(1, v->begin, v->c));
+			v->bp += write(1, "%", 1);
 			(*format) += 2;
 			v->c = 0;
 			v->begin = *format;
@@ -32,8 +32,9 @@ int		f_no_perc_at_all(const char **format, t_var *v)
 			(v->bp += v->c) && (v->c = 0);
 			return (0);
 		}
-		(**format != '\0' ) && (*format)++ && v->c++;
+		(**format != '\0' && **format != '%') && (*format)++ && v->c++;
 	}
 	v->bp += write(1, v->begin, v->c);
+	f_reset_init(v);
 	return (1);
 }

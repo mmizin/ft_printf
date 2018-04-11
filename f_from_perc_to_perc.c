@@ -6,14 +6,14 @@
 
 static	int		f_find_weight(const char **format, char c, va_list ap);
 static	int		f_find_precision(const char **format, char c, va_list ap);
-static	int		f_if_handler(t_var *v, const char *format);
+static	int		f_if_handler(t_var *v);
 
 int     f_from_per_to_per(va_list ap, const char **format, t_var *v)
 {
     f_sign(format, v);
     v->w = f_find_weight(format, '%', ap);
     v->p = f_find_precision(format, '%', ap);
-    f_if_handler(v, *format);
+    f_if_handler(v);
     (**format != '\0') && (*format)++;
     f_reset_init(v);
     return (1);
@@ -74,7 +74,7 @@ static	int		f_find_precision(const char **format, char c, va_list ap)
     return (0);
 }
 
-static	int		f_if_handler(t_var *v, const char *format)
+static	int		f_if_handler(t_var *v)
 {
     if (v->zer && v->w == 0)
         v->zer = 0;
@@ -85,7 +85,7 @@ static	int		f_if_handler(t_var *v, const char *format)
        if (v->zer)
            v->bp += f_w_e_l('0', v->w - 1);
         else
-           v->bp += f_w_e_l(' ', v->w);
+           v->bp += f_w_e_l(' ', v->w - 1);
         v->bp += write(1, "%", 1);
     }
     else if (v->w < 0)

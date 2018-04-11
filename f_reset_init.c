@@ -14,12 +14,12 @@ int     f_reset_init(t_var *v)
     v->i = 0;
     v->sign = 0;
     v->begin = NULL;
+    v->ts = 192;
     v->pl = 0;
     v->min = 0;
     v->hes = 0;
     v->spa = 0;
     v->zer = 0;
     v->tmp = 0;
-    v->ts = 192;
     return (1);
 }
