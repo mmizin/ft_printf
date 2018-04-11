@@ -29,6 +29,7 @@ void f_initialize_struct(t_var *v)
 	v->spa = 0;
 	v->zer = 0;
 	v->tmp = 0;
+	v->ts = 192;
 }
 
 int		ft_printf(const char *format, ...)

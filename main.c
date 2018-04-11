@@ -12,13 +12,13 @@ int main()
 //	printf("\norigin_return = %d", printf("|%05.2%|") - 1);
 //	printf("\n");
 //	printf("%i\n", MB_CUR_MAX);
-//	wchar_t *str = NULL;
+	wchar_t *str = NULL;
 
 
 //    printf("\n");
 //    printf("%s", NULL);
-//	  ft_printf("%s", NULL);
-//    printf("\norigin_return = %d", printf("\n%s", NULL) - 1);
+//	  ft_printf("|%10.3s|", NULL);
+//    printf("\norigin_return = %d", printf("\n|%10.3s|", NULL) - 1);
 
 //	printf("\n");
 //	printf("%s\n", NULL);
@@ -26,9 +26,11 @@ int main()
 //	printf("\norigin_return = %d", printf("\n%s\n", NULL) -1);
 
 
+//
 
+//		printf("|%ld|\n", 789789789789);
+//	 ft_printf("|%ld|\n", 789789789789);
 
-	//	printf("%020ls", L"привет");
 
 
 
@@ -113,14 +115,13 @@ int main()
 //		printf("\norigin_return = %d", printf("\n123 %4.s", "abc"));
 //		printf("\n");
 	//
+//
+
+//		printf("\norigin_return = %d", printf("[%2s]", BLURB));
 //		ft_printf("[%2s]", BLURB);
-//		printf("\n");
-//		printf("[%2s]", BLURB);
-//		printf("\norigin_return = %d", printf("\n[%2s]", BLURB));
 //		printf("\n");
 	//
 //		ft_printf("[%24s]", BLURB);
-//		printf("\n");
 //		printf("\norigin_return = %d", (printf("\n[%24s]", BLURB)) - 1);
 //		printf("\n");
 	//
@@ -253,22 +254,18 @@ int main()
 //		printf("\norigin_return = %d", printf("\n%2.3s", "blue") - 1);
 //		printf("\n");
 	//
-//		printf("\n");
-//		printf("%7.7s", "blue");
-//		ft_printf("%7.7s", "blue");
-//		printf("\norigin_return = %d", printf("\n%7.7s", "blue") - 1);
-//		printf("\n");
-	//
-//		printf("\n");
-//		printf("%4.5s", "blue");
-//		ft_printf("%4.5s", "blue");
-//		printf("\norigin_return = %d", printf("\n%4.5s", "blue") - 1);
+
+//		ft_printf("|%7.7s|", "blue");
+//		printf("\norigin_return = %d", printf("\n|%7.7s|", "blue") - 1);
 //		printf("\n");
 	//
+
+//		ft_printf("|%4.5s|", "blue");
+//		printf("\norigin_return = %d", printf("\n|%4.5s|", "blue") - 1);
 //		printf("\n");
-//		printf("%-10s", "blue");
-//		ft_printf("%-10s", "blue");
-//		printf("\norigin_return = %d", printf("\n%-10s", "blue") - 1);
+	//
+//		ft_printf("|%-10s|", "blue");
+//		printf("\norigin_return = %d", printf("\n|%-10s|", "blue") - 1);
 //		printf("\n");
 	//
 //		printf("\n");
@@ -328,10 +325,14 @@ int main()
 //	   ft_printf("|%10.14ji|", -123);
 
 
-	printf("\n");
-	printf("|%010.12x|", 14789);
 //	printf("\n");
-//	printf("|%-4d|", 123);
+//
+//    ft_printf("|%-05% OK %s OK %d OK %i OK %x OK %s|", "elo", 123, -123, 255, "ok");
+//    printf("\n");
+//    printf("\norigin_return = %d", printf("\n|%-05% OK %s OK %d OK %i OK %x OK %s|", "elo", 123, -123, 255, "ok") -1);
 
+	int x = 3;
+    ft_printf("%#x", &x);
+	printf("%#x", &x);
 	return (0);
 }

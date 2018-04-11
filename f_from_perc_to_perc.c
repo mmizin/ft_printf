@@ -10,20 +10,13 @@ static	int		f_if_handler(t_var *v, const char *format);
 
 int     f_from_per_to_per(va_list ap, const char **format, t_var *v)
 {
-    v->l = 0;
-    *format = v->begin;
+    f_sign(format, v);
     v->w = f_find_weight(format, '%', ap);
     v->p = f_find_precision(format, '%', ap);
-    v->begin = *format;
-    while (*format && **format && **format != '%')
-        (*format)++ && v->l++;
-    (**format == '%') && v->l++;
-    (v->p == 257) && (v->p = v->l);
     f_if_handler(v, *format);
-    if (**format == '%')
-        return (1);
-    else
-        return (0);
+    (**format != '\0') && (*format)++;
+    f_reset_init(v);
+    return (1);
 }
 
 static	int		f_find_weight(const char **format, char c, va_list ap)
@@ -32,6 +25,7 @@ static	int		f_find_weight(const char **format, char c, va_list ap)
     int		sign;
 
     sign = 1;
+    (**format == '%') && (*format)++;
     while (format && **format != c && **format != '.')
     {
         if (**format == '-')
@@ -72,39 +66,35 @@ static	int		f_find_precision(const char **format, char c, va_list ap)
                 prec = ft_atoi(*format);
                 while (**format && (**format >= '0' && **format <= '9'))
                     (*format)++;
-                return (prec);
+                return (0);
             }
         }
         (**format != c) && (*format)++;
     }
-    if (!point)
-        return (257);
-    return (prec);
+    return (0);
 }
 
 static	int		f_if_handler(t_var *v, const char *format)
 {
-    int tmp;
-
-    if (v->p >= v->l && *format == '%')
-        v->l--;
-    if (v->p == 0 || v->p <= v->l)
-        v->l = v->p;
-    if (v->w >=0 && v->w <= v->l)
-        v->w = v->l;
-    if (v->w < 0)
-        tmp = (v->w * -1) > v->l ? (v->w * -1) - v->l : 0;
-    if (v->w >= 0 && v->w >= v->l)
+    if (v->zer && v->w == 0)
+        v->zer = 0;
+    if (v->min)
+        v->zer = 0;
+    if (v->w >= 0)
     {
-        v->bp += f_w_e_l(' ', v->w - v->l);
-        v->bp += write(1, v->begin, v->l);
-        (*format == '%') && (v->bp += write(1, "%", 1));
+       if (v->zer)
+           v->bp += f_w_e_l('0', v->w - 1);
+        else
+           v->bp += f_w_e_l(' ', v->w);
+        v->bp += write(1, "%", 1);
     }
     else if (v->w < 0)
     {
-        v->bp += write(1, v->begin, v->l);
-        (*format == '%') && (v->bp += write(1, "%", 1));
-        v->bp += f_w_e_l(' ', tmp);
+        v->bp += write(1, "%", 1);
+        if (v->zer)
+            v->bp += f_w_e_l('0', (v->w * -1) - 1);
+        else
+            v->bp += f_w_e_l(' ', (v->w * -1) - 1);
     }
     return (1);
 }

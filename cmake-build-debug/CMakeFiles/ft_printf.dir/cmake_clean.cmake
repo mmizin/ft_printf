@@ -19,6 +19,12 @@ file(REMOVE_RECURSE
   "CMakeFiles/ft_printf.dir/main.c.o"
   "CMakeFiles/ft_printf.dir/f_specifies_the_size_of_the_argument.c.o"
   "CMakeFiles/ft_printf.dir/f_perc_x_X.c.o"
+  "CMakeFiles/ft_printf.dir/f_reset_init.c.o"
+  "CMakeFiles/ft_printf.dir/ft_itoa_base.c.o"
+  "CMakeFiles/ft_printf.dir/f_handl_x_X.c.o"
+  "CMakeFiles/ft_printf.dir/f_perc_o_O.c.o"
+  "CMakeFiles/ft_printf.dir/f_handl_o_O.c.o"
+  "CMakeFiles/ft_printf.dir/f_perc_p_small.c.o"
   "ft_printf.pdb"
   "ft_printf"
 )

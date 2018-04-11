@@ -17,11 +17,11 @@ int f_perc_S_big(va_list ap, const char **format, t_var *v)
 	v->ts == l ? (v->res = 's') : (v->res  = 'S');
 	v->w = f_find_weight(format, v->res, ap);
 	f_find_precision(format, v->res, ap, v);
-	if (!(str = va_arg(ap, wchar_t *)))
-	{
-		(**format != '\0' && (**format == v->res || **format == v->res)) && (*format)++;
-		return (write(1, "(null)", 6) && (v->bp += 6));
-	}
+//	if (!(str = va_arg(ap, wchar_t *)))
+//	{
+//		(**format != '\0' && **format == v->res) && (*format)++;				/* UNDEFINED BEHAVIOUR */
+//		return (write(1, "(null)", 6) && (v->bp += 6));
+//	}
 	f_find_bytes(v, str);
 	if (MB_CUR_MAX != 4 && v->cur_max == 1)
 	{
@@ -30,11 +30,12 @@ int f_perc_S_big(va_list ap, const char **format, t_var *v)
 		return (0);
 	}
 	if (v->w > v->l)
-		(v->bp += f_w_e_l(' ', v->w - v->l));
+		(v->bp += f_w_e_l(' ', v->w - v->l));						/* TRY TO JOIN IN IF */
 	else if (v->w < 0)
 			v->sign = (v->w * -1) > 0 ? (v->w * -1) - v->l : 0;
 	f_S_ls_print(v, str, res);
 	(**format != '\0') && (*format)++;
+	f_reset_init(v);
 	return (1);
 }
 

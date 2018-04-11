@@ -14,24 +14,20 @@
 
 static	int		f_find_weight(const char **format, char c, va_list ap);
 static	int		f_find_precision(const char **format, char c, va_list ap);
-static	int		f_if_handler(t_var *v, va_list ap);
+static	int		f_if_handler(t_var *v, char *argv);
 
 int		f_perc_s_small(va_list ap, const char **format, t_var *v)
 {
 	va_list	first;
 	va_list second;
+    char    *argv;
 
 	v->w = f_find_weight(format, v->res, ap);
 	v->p = f_find_precision(format, v->res, ap);
-	va_copy(first, ap);
-	v->l = ft_strlen(va_arg(first, char *));
-	va_copy(second, ap);
-	if (!va_arg(second, char *))
-	{
-		(**format != '\0' && **format == v->res) && (*format)++;
-		return (write(1, "(null)", 6) && (v->bp += 6) && va_arg(ap, char *));
-	}
-	f_if_handler(v, ap);
+    argv = va_arg(ap, char *);
+	v->l = ft_strlen(argv);
+	f_if_handler(v, argv);
+    f_reset_init(v);
 	(**format != '\0') && (*format)++;
 	return (1);
 }
@@ -86,15 +82,16 @@ static	int		f_find_precision(const char **format, char c, va_list ap)
 		(**format != c) && (*format)++;
 	}
 	if (!point)
-		return (point = ft_strlen(va_arg(first, char *)));
+		return (-1);
 	return (prec);
 }
 
-static	int		f_if_handler(t_var *v, va_list ap)
+static	int		f_if_handler(t_var *v, char *argv)
 {
 	int tmp;
 
-	if (v->p == 0 || v->p <= v->l)
+	(!argv) && (v->l = 6);
+	if (v->p == 0 || (v->p >= 0 && v->p <= v->l))
 		v->l = v->p;
 	if (v->w >=0 && v->w <= v->l)
 		v->w = v->l;
@@ -103,32 +100,18 @@ static	int		f_if_handler(t_var *v, va_list ap)
 	if (v->w >= 0 && v->w >= v->l)
 	{
 		v->bp += f_w_e_l(' ', v->w - v->l);
-		v->bp += write(1, va_arg(ap, char *), v->l);
+        if (!argv)
+            v->bp += write(1, "(null)", v->l);
+		else
+			v->bp += write(1, argv, v->l);
 	}
 	else if (v->w < 0)
 	{
-		v->bp += write(1, va_arg(ap, char *), v->l);
+		if (!argv)
+			v->bp += write(1, "(null)", v->l);
+		else
+			v->bp += write(1, argv, v->l);
 		v->bp += f_w_e_l(' ', tmp);
 	}
-//	if (v->w > v->l && v->p >= v->l)
-//		(v->bp += f_w_e_l(' ', v->w - v->l))
-//		&& (v->bp += write(1, va_arg(ap, char *), v->l));
-//	else if (v->w >= 0 && v->p > v->l && v->w <= v->l)
-//		v->bp += write(1, va_arg(ap, char *), v->l);
-//	else if (v->w >= 0 && v->p < v->l && v->w >= v->l)
-//		(v->bp += f_w_e_l(' ', v->w - v->p))
-//		&& (v->bp += write(1, va_arg(ap, char *), v->p));
-//	else if (v->w < 0 && v->p <= v->l && (v->w * -1) >= v->p)
-//		(v->bp += write(1, va_arg(ap, char *), v->p))
-//		&& (v->bp += f_w_e_l(' ', (v->w * -1) - v->p));
-//	else if (v->w < 0 && v->p > v->l && (v->w * -1) >= v->p)
-//		(v->bp += write(1, va_arg(ap, char *), v->l))
-//		&& (v->bp += f_w_e_l(' ', (v->w * -1) - v->l));
-//	else if (v->w < 0 && v->p <= v->l && (v->w * -1) < v->p)
-//		v->bp += write(1, va_arg(ap, char *), v->p);
-//	else if (v->w < 0 && v->p > v->l && (v->w * -1) < v->p)
-//		v->bp += write(1, va_arg(ap, char *), v->l);
-//	else if ((v->w >= 0 && v->p <= v->l && v->w <= v->l) || (v->w == 0 && v->p == 0))
-//		v->bp += write(1, va_arg(ap, char *), v->p);
 	return (1);
 }

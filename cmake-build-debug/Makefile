@@ -231,6 +231,60 @@ f_handelling_for_d_and_i_flags.c.s:
 	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handelling_for_d_and_i_flags.c.s
 .PHONY : f_handelling_for_d_and_i_flags.c.s
 
+f_handl_o_O.o: f_handl_o_O.c.o
+
+.PHONY : f_handl_o_O.o
+
+# target to build an object file
+f_handl_o_O.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handl_o_O.c.o
+.PHONY : f_handl_o_O.c.o
+
+f_handl_o_O.i: f_handl_o_O.c.i
+
+.PHONY : f_handl_o_O.i
+
+# target to preprocess a source file
+f_handl_o_O.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handl_o_O.c.i
+.PHONY : f_handl_o_O.c.i
+
+f_handl_o_O.s: f_handl_o_O.c.s
+
+.PHONY : f_handl_o_O.s
+
+# target to generate assembly for a file
+f_handl_o_O.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handl_o_O.c.s
+.PHONY : f_handl_o_O.c.s
+
+f_handl_x_X.o: f_handl_x_X.c.o
+
+.PHONY : f_handl_x_X.o
+
+# target to build an object file
+f_handl_x_X.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handl_x_X.c.o
+.PHONY : f_handl_x_X.c.o
+
+f_handl_x_X.i: f_handl_x_X.c.i
+
+.PHONY : f_handl_x_X.i
+
+# target to preprocess a source file
+f_handl_x_X.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handl_x_X.c.i
+.PHONY : f_handl_x_X.c.i
+
+f_handl_x_X.s: f_handl_x_X.c.s
+
+.PHONY : f_handl_x_X.s
+
+# target to generate assembly for a file
+f_handl_x_X.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_handl_x_X.c.s
+.PHONY : f_handl_x_X.c.s
+
 f_itoa.o: f_itoa.c.o
 
 .PHONY : f_itoa.o
@@ -393,6 +447,60 @@ f_perc_d_small.c.s:
 	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_d_small.c.s
 .PHONY : f_perc_d_small.c.s
 
+f_perc_o_O.o: f_perc_o_O.c.o
+
+.PHONY : f_perc_o_O.o
+
+# target to build an object file
+f_perc_o_O.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_o_O.c.o
+.PHONY : f_perc_o_O.c.o
+
+f_perc_o_O.i: f_perc_o_O.c.i
+
+.PHONY : f_perc_o_O.i
+
+# target to preprocess a source file
+f_perc_o_O.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_o_O.c.i
+.PHONY : f_perc_o_O.c.i
+
+f_perc_o_O.s: f_perc_o_O.c.s
+
+.PHONY : f_perc_o_O.s
+
+# target to generate assembly for a file
+f_perc_o_O.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_o_O.c.s
+.PHONY : f_perc_o_O.c.s
+
+f_perc_p_small.o: f_perc_p_small.c.o
+
+.PHONY : f_perc_p_small.o
+
+# target to build an object file
+f_perc_p_small.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_p_small.c.o
+.PHONY : f_perc_p_small.c.o
+
+f_perc_p_small.i: f_perc_p_small.c.i
+
+.PHONY : f_perc_p_small.i
+
+# target to preprocess a source file
+f_perc_p_small.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_p_small.c.i
+.PHONY : f_perc_p_small.c.i
+
+f_perc_p_small.s: f_perc_p_small.c.s
+
+.PHONY : f_perc_p_small.s
+
+# target to generate assembly for a file
+f_perc_p_small.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_perc_p_small.c.s
+.PHONY : f_perc_p_small.c.s
+
 f_perc_x_X.o: f_perc_x_X.c.o
 
 .PHONY : f_perc_x_X.o
@@ -446,6 +554,33 @@ f_percent_s_small.s: f_percent_s_small.c.s
 f_percent_s_small.c.s:
 	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_percent_s_small.c.s
 .PHONY : f_percent_s_small.c.s
+
+f_reset_init.o: f_reset_init.c.o
+
+.PHONY : f_reset_init.o
+
+# target to build an object file
+f_reset_init.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_reset_init.c.o
+.PHONY : f_reset_init.c.o
+
+f_reset_init.i: f_reset_init.c.i
+
+.PHONY : f_reset_init.i
+
+# target to preprocess a source file
+f_reset_init.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_reset_init.c.i
+.PHONY : f_reset_init.c.i
+
+f_reset_init.s: f_reset_init.c.s
+
+.PHONY : f_reset_init.s
+
+# target to generate assembly for a file
+f_reset_init.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/f_reset_init.c.s
+.PHONY : f_reset_init.c.s
 
 f_sign.o: f_sign.c.o
 
@@ -554,6 +689,33 @@ ft_atoi.s: ft_atoi.c.s
 ft_atoi.c.s:
 	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/ft_atoi.c.s
 .PHONY : ft_atoi.c.s
+
+ft_itoa_base.o: ft_itoa_base.c.o
+
+.PHONY : ft_itoa_base.o
+
+# target to build an object file
+ft_itoa_base.c.o:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/ft_itoa_base.c.o
+.PHONY : ft_itoa_base.c.o
+
+ft_itoa_base.i: ft_itoa_base.c.i
+
+.PHONY : ft_itoa_base.i
+
+# target to preprocess a source file
+ft_itoa_base.c.i:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/ft_itoa_base.c.i
+.PHONY : ft_itoa_base.c.i
+
+ft_itoa_base.s: ft_itoa_base.c.s
+
+.PHONY : ft_itoa_base.s
+
+# target to generate assembly for a file
+ft_itoa_base.c.s:
+	$(MAKE) -f CMakeFiles/ft_printf.dir/build.make CMakeFiles/ft_printf.dir/ft_itoa_base.c.s
+.PHONY : ft_itoa_base.c.s
 
 ft_printf.o: ft_printf.c.o
 
@@ -684,6 +846,12 @@ help:
 	@echo "... f_handelling_for_d_and_i_flags.o"
 	@echo "... f_handelling_for_d_and_i_flags.i"
 	@echo "... f_handelling_for_d_and_i_flags.s"
+	@echo "... f_handl_o_O.o"
+	@echo "... f_handl_o_O.i"
+	@echo "... f_handl_o_O.s"
+	@echo "... f_handl_x_X.o"
+	@echo "... f_handl_x_X.i"
+	@echo "... f_handl_x_X.s"
 	@echo "... f_itoa.o"
 	@echo "... f_itoa.i"
 	@echo "... f_itoa.s"
@@ -702,12 +870,21 @@ help:
 	@echo "... f_perc_d_small.o"
 	@echo "... f_perc_d_small.i"
 	@echo "... f_perc_d_small.s"
+	@echo "... f_perc_o_O.o"
+	@echo "... f_perc_o_O.i"
+	@echo "... f_perc_o_O.s"
+	@echo "... f_perc_p_small.o"
+	@echo "... f_perc_p_small.i"
+	@echo "... f_perc_p_small.s"
 	@echo "... f_perc_x_X.o"
 	@echo "... f_perc_x_X.i"
 	@echo "... f_perc_x_X.s"
 	@echo "... f_percent_s_small.o"
 	@echo "... f_percent_s_small.i"
 	@echo "... f_percent_s_small.s"
+	@echo "... f_reset_init.o"
+	@echo "... f_reset_init.i"
+	@echo "... f_reset_init.s"
 	@echo "... f_sign.o"
 	@echo "... f_sign.i"
 	@echo "... f_sign.s"
@@ -720,6 +897,9 @@ help:
 	@echo "... ft_atoi.o"
 	@echo "... ft_atoi.i"
 	@echo "... ft_atoi.s"
+	@echo "... ft_itoa_base.o"
+	@echo "... ft_itoa_base.i"
+	@echo "... ft_itoa_base.s"
 	@echo "... ft_printf.o"
 	@echo "... ft_printf.i"
 	@echo "... ft_printf.s"

@@ -1,38 +1,31 @@
 //
-// Created by Nikolay MIZIN on 4/9/18.
+// Created by Nikolay MIZIN on 4/10/18.
 //
 
 #include "ft_printf.h"
 
 static int		f_find_weight(const char **format, char c, va_list ap, t_var *v);
-static int		f_find_precision(const char **format, char c, va_list ap, t_var *v);
-static int 		f_width(t_var *v, unsigned long long int v_arg);
+static int		f_find_precision(const char **format, char c, va_list ap);
+static int 		f_width(unsigned long long int v_arg);
 
-int     f_perc_x_X(va_list ap, const char **format, t_var *v)
+int     f_perc_o_O(va_list ap, const char **format, t_var *v)
 {
     unsigned long long int	v_arg;
     char                   *argv;
     char                    tmp;
 
-    (tmp = v->res) && (v->ts == l && v->res == 'U') && (tmp = 'u');
+    (tmp = v->res) && (v->ts == l && v->res == 'O') && (tmp = 'o');
     f_sign(format, v);
     v->w = f_find_weight(format, tmp, ap, v);
-    v->p = f_find_precision(format, tmp, ap, v);
-    if (v->res == 'U')
-        v_arg  = va_arg(ap, unsigned long);
-    else if (v->res == 'u' || v->hes)
-        v_arg  = va_arg(ap, unsigned);
-    else if ((v->ts != ll && v->ts != j))
-        v_arg  = va_arg(ap, unsigned long);
+    v->p = f_find_precision(format, tmp, ap);
+    if (v->ts != l && v->ts != ll && v->ts != j && v->res != 'O')
+        v_arg  = va_arg(ap, unsigned int);
     else
         v_arg  = va_arg(ap, unsigned long long int);
     f_spec_the_size_for_x_and_X(&v_arg, v);
-    (v->l = f_width(v, v_arg));
-    if (v->res == 'u' || v->res == 'U')
-        argv = f_itoa(v_arg);
-    else
-        argv = ft_itoa_base(v_arg, 16, v->res);
-    f_handl_x_X(v, v_arg, argv);
+    v->l = f_width(v_arg);
+    argv = ft_itoa_base(v_arg, 8, v->res);
+    f_handl_o_O(v, v_arg, argv);
     while (**format != tmp)
         (*format)++;
     (**format != '\0') && (*format)++;
@@ -67,7 +60,7 @@ static int		f_find_weight(const char **format, char c, va_list ap, t_var *v)
     return (0);
 }
 
-static	int		f_find_precision(const char **format, char c, va_list ap, t_var *v)
+static	int		f_find_precision(const char **format, char c, va_list ap)
 {
     int res;
     int check;
@@ -95,26 +88,14 @@ static	int		f_find_precision(const char **format, char c, va_list ap, t_var *v)
         return (-1);
 }
 
-static int 		f_width(t_var *v,unsigned long long int v_arg)
+static int 		f_width(unsigned long long int v_arg)
 {
     int count;
 
     count = 0;
-    if (v->res == 'x' || v->res == 'X')
-    {
-        if (v_arg == 0)
-            count++;
-        while (v_arg)
-            ++count && (v_arg /= 16);
-        return (count);
-    }
-    else
-    {
-        if (v_arg == 0)
-            count++;
-        while (v_arg)
-            ++count && (v_arg /= 10);
-        return (count);
-    }
-
+    if (v_arg == 0)
+        count++;
+    while (v_arg)
+        ++count && (v_arg /= 8);
+    return (count);
 }

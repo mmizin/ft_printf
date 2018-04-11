@@ -71,4 +71,11 @@ char    *f_itoa(long long int number);
 void	f_for_d_and_i_flags(t_var *v, long long int v_arg, char *argv);
 int     f_spec_the_size_for_d_and_i(long long int *v_arg, t_var *v);
 int     f_perc_x_X(va_list ap, const char **format, t_var *v);
+int     f_reset_init(t_var *v);
+int     f_spec_the_size_for_x_and_X(unsigned long long int *v_arg, t_var *v);
+char	*ft_itoa_base(unsigned long long int value, int base, char res);
+void	f_handl_x_X(t_var *v, unsigned long long int v_arg, char *argv);
+int     f_perc_o_O(va_list ap, const char **format, t_var *v);
+void    f_handl_o_O(t_var *v, unsigned long long int v_arg, char *argv);
+int     f_perc_p_small(va_list ap, const char **format, t_var *v);
 #endif

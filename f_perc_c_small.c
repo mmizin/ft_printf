@@ -12,6 +12,7 @@ int     f_perc_c_small(va_list ap, const char **format, t_var *v)
     v->w = f_find_weight(format, 'c', ap);
     f_if_handler(v, ap);
     (**format != '\0') && (*format)++;
+    f_reset_init(v);
     return (1);
 }
 

@@ -18,29 +18,22 @@ static	int		f_init_enum(const char *format, t_var *v, char *res);
 
 void		f_chk_let_conv(const char **format, va_list ap, t_var *v)
 {
-	v->res = f_fin_letr(*format, v);
+	if (!(v->res = f_fin_letr(*format, v)))
+        return ;
 	if (v->res == 's' && f_perc_s_small(ap, format, v))
         ;
-	else if (v->res == 'p')
-		(*format)++;
-	else if (v->res == 'd' && f_perc_d_small(ap, format, v))
+	else if (v->res == 'p' &&  f_perc_p_small(ap, format, v))
+		;
+	else if ((v->res == 'd' || v->res == 'D') && f_perc_d_small(ap, format, v))
         ;
-	else if (v->res == 'D')
-		(*format)++;
 	else if (v->res == 'i' && f_perc_d_small(ap, format, v))
 		;
-	else if (v->res == 'o')
-		(*format)++;
-	else if (v->res == 'O')
-		(*format)++;
-	else if (v->res == 'u')
-		(*format)++;
-	else if (v->res == 'U')
-		(*format)++;
-	else if (v->res == 'x' && f_perc_x_X(ap, format, v))
+	else if ((v->res == 'O' || v->res == 'o') && f_perc_o_O(ap, format, v))
+		;
+	else if ((v->res == 'u' || v->res == 'U') && f_perc_x_X(ap, format, v))
+		;
+	else if ((v->res == 'x' || v->res == 'X') && f_perc_x_X(ap, format, v))
         ;
-	else if (v->res == 'X')
-		(*format)++;
 	else if (v->res == 'c' && f_perc_c_small(ap, format, v))
 		;
 	else if (v->res == 'C' && f_perc_C_big(ap, format, v))
@@ -56,14 +49,19 @@ static	char	f_fin_letr(const char *format, t_var *v)
 	v->begin = format;
 	char *res;
 	char res_sp;
+    *format == '%' && format++;
 	while (format && *format)
 	{
-		if ((res = (ft_strchr(CONVERSIONS, *format))) != NULL)
+		if ((res = (ft_strchr(CONVERSIONS, *format))) != NULL || *format == '%')
 			break;
 		format++;
 	}
 	if (res == NULL)
-		return (0);
+    {
+        format = v->begin;
+        return (0);
+    }
+
 	f_init_enum(format, v, res);
 	return ((res_sp = f_size_sp(&res, v)) ? res_sp : *res);
 }
@@ -74,6 +72,12 @@ static	char	f_size_sp(char **res, t_var *v)
 		return ('S');
 	else if (v->ts == l && **res == 'c')
 	    return ('C');
+	else if (v->ts == l && **res =='d')
+		return ('D');
+	else if (v->ts == l && **res == 'o')
+		return ('O');
+	else if (v->ts == l && **res == 'u')
+		return ('U');
 	else
 		return (0);
 }

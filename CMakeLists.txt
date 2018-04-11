@@ -23,4 +23,8 @@ add_executable(ft_printf
         ft_strchr.c
         ft_strlen.c
         main.c
-        f_specifies_the_size_of_the_argument.c f_perc_x_X.c)
+        f_specifies_the_size_of_the_argument.c
+        f_perc_x_X.c f_reset_init.c
+        ft_itoa_base.c
+        f_handl_x_X.c
+        f_perc_o_O.c f_handl_o_O.c f_perc_p_small.c)

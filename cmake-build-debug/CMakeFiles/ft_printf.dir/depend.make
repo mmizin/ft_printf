@@ -13,6 +13,12 @@ CMakeFiles/ft_printf.dir/f_from_perc_to_perc.c.o: ../ft_printf.h
 CMakeFiles/ft_printf.dir/f_handelling_for_d_and_i_flags.c.o: ../f_handelling_for_d_and_i_flags.c
 CMakeFiles/ft_printf.dir/f_handelling_for_d_and_i_flags.c.o: ../ft_printf.h
 
+CMakeFiles/ft_printf.dir/f_handl_o_O.c.o: ../f_handl_o_O.c
+CMakeFiles/ft_printf.dir/f_handl_o_O.c.o: ../ft_printf.h
+
+CMakeFiles/ft_printf.dir/f_handl_x_X.c.o: ../f_handl_x_X.c
+CMakeFiles/ft_printf.dir/f_handl_x_X.c.o: ../ft_printf.h
+
 CMakeFiles/ft_printf.dir/f_itoa.c.o: ../f_itoa.c
 CMakeFiles/ft_printf.dir/f_itoa.c.o: ../ft_printf.h
 
@@ -31,8 +37,20 @@ CMakeFiles/ft_printf.dir/f_perc_c_small.c.o: ../ft_printf.h
 CMakeFiles/ft_printf.dir/f_perc_d_small.c.o: ../f_perc_d_small.c
 CMakeFiles/ft_printf.dir/f_perc_d_small.c.o: ../ft_printf.h
 
+CMakeFiles/ft_printf.dir/f_perc_o_O.c.o: ../f_perc_o_O.c
+CMakeFiles/ft_printf.dir/f_perc_o_O.c.o: ../ft_printf.h
+
+CMakeFiles/ft_printf.dir/f_perc_p_small.c.o: ../f_perc_p_small.c
+CMakeFiles/ft_printf.dir/f_perc_p_small.c.o: ../ft_printf.h
+
+CMakeFiles/ft_printf.dir/f_perc_x_X.c.o: ../f_perc_x_X.c
+CMakeFiles/ft_printf.dir/f_perc_x_X.c.o: ../ft_printf.h
+
 CMakeFiles/ft_printf.dir/f_percent_s_small.c.o: ../f_percent_s_small.c
 CMakeFiles/ft_printf.dir/f_percent_s_small.c.o: ../ft_printf.h
+
+CMakeFiles/ft_printf.dir/f_reset_init.c.o: ../f_reset_init.c
+CMakeFiles/ft_printf.dir/f_reset_init.c.o: ../ft_printf.h
 
 CMakeFiles/ft_printf.dir/f_sign.c.o: ../f_sign.c
 CMakeFiles/ft_printf.dir/f_sign.c.o: ../ft_printf.h
@@ -44,6 +62,9 @@ CMakeFiles/ft_printf.dir/f_wright_exact_length.c.o: ../f_wright_exact_length.c
 CMakeFiles/ft_printf.dir/f_wright_exact_length.c.o: ../ft_printf.h
 
 CMakeFiles/ft_printf.dir/ft_atoi.c.o: ../ft_atoi.c
+
+CMakeFiles/ft_printf.dir/ft_itoa_base.c.o: ../ft_itoa_base.c
+CMakeFiles/ft_printf.dir/ft_itoa_base.c.o: ../ft_printf.h
 
 CMakeFiles/ft_printf.dir/ft_printf.c.o: ../ft_printf.c
 CMakeFiles/ft_printf.dir/ft_printf.c.o: ../ft_printf.h

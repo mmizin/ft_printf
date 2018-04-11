@@ -23,9 +23,9 @@ int     f_sign(const char **format, t_var *v)
             ;
         else if (*(v->begin) == '-' && (v->min = 1))
             ;
-        else if ((*(v->begin) == '0' && (v->c == 1 || v->c == 2)) && (v->zer = 1))
+        else if ((*(v->begin) == '0' && (v->c >= 1 && v->c <= 2)) && (v->zer = 1))
             ;
-        else if (*(v->begin) == '#' && (v->hes = 1))
+        else if (*(v->begin) == '#' && (v->hes = 2))
             ;
         v->begin++;
     }
