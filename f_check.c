@@ -12,9 +12,24 @@
 
 #include "ft_printf.h"
 
-static int f_check_any_letter_init(va_list ap, const char **format, t_var *v);
+static int	f_check_any_letter_init(va_list ap, const char **format, t_var *v)
+{
+	char *tmp;
 
-void	f_chk(va_list ap, const char *format, t_var *v)
+	v->begin = (*format + 1);
+	while (*(v->begin))
+	{
+		if ((tmp = (ft_strchr(CONVERSIONS, *(v->begin)))) != NULL
+			|| *(v->begin) == '%')
+			break ;
+		v->begin++;
+	}
+	if (tmp == NULL)
+		f_from_per_to_per(ap, format, v);
+	return (1);
+}
+
+void		f_chk(va_list ap, const char *format, t_var *v)
 {
 	while (format && *format)
 	{
@@ -26,21 +41,4 @@ void	f_chk(va_list ap, const char *format, t_var *v)
 			return ;
 		f_chk_let_conv(&format, ap, v);
 	}
-}
-
-
-static int f_check_any_letter_init(va_list ap, const char **format, t_var *v)
-{
-	char *tmp;
-
-	v->begin = (*format + 1);
-	while (*(v->begin))
-	{
-		if ((tmp = (ft_strchr(CONVERSIONS, *(v->begin)))) != NULL || *(v->begin) == '%')
-			break;
-		v->begin++;
-	}
-	if (tmp == NULL)
-       f_from_per_to_per(ap, format, v);
-	return (1);
 }

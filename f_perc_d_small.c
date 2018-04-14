@@ -21,7 +21,7 @@ int         	f_perc_d_small(va_list ap, const char **format, t_var *v)
 	if ((v->min && v->w > 0) && (v->w *= -1))
 		;
 	v->p = f_find_precision(format, tmp, ap);
-	if (v->ts != l && v->ts != ll && v->ts != j && v->res != 'D')
+	if (v->ts != l && v->ts != ll && v->ts != j && v->res != 'D' && v->ts != z)
         v_arg  = va_arg(ap, int);
 	else
 		v_arg  = va_arg(ap, long long int);
@@ -29,8 +29,8 @@ int         	f_perc_d_small(va_list ap, const char **format, t_var *v)
 	v->l = f_width(v_arg);
 	argv = f_itoa(v_arg);
 	f_for_d_and_i_flags(v, v_arg, argv);
-	free(argv);
-	while (**format != tmp)
+		free(argv);
+	while (**format != tmp && **format != 'D')
 		(*format)++;
 	(**format != '\0') && (*format)++;
 	f_reset_init(v);
@@ -42,7 +42,7 @@ static int		f_find_weight(const char **format, char c, va_list ap, t_var *v)
 	int		sign;
 
 	sign = 1;
-	while (format && **format != c && **format != '.')
+	while (format && **format != c && **format != '.' && **format != 'D')
 	{
 		if (**format == '-' && (sign = -1))
 			;
@@ -58,7 +58,7 @@ static int		f_find_weight(const char **format, char c, va_list ap, t_var *v)
 				(*format)++;
 			return (v->w);
 		}
-		(**format != c && **format != '.') && (*format)++;
+		(**format != c && **format != '.' ) && (*format)++;
 	}
 	return (0);
 }
@@ -68,7 +68,7 @@ static	int		f_find_precision(const char **format, char c, va_list ap)
     int res;
 	int check;
 
-    while (**format && **format != c)
+    while (**format && **format != c && **format != 'D')
 	{
 		if (**format == '.')
 		{

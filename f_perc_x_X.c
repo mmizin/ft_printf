@@ -7,6 +7,7 @@
 static int		f_find_weight(const char **format, char c, va_list ap, t_var *v);
 static int		f_find_precision(const char **format, char c, va_list ap);
 static int 		f_width(t_var *v, unsigned long long int v_arg);
+//static int      f_if_u_U(t_var *v, unsigned long long int *v_arg, va_list ap);
 
 int     f_perc_x_X(va_list ap, const char **format, t_var *v)
 {
@@ -18,18 +19,19 @@ int     f_perc_x_X(va_list ap, const char **format, t_var *v)
     f_sign(format, v);
     v->w = f_find_weight(format, tmp, ap, v);
     v->p = f_find_precision(format, tmp, ap);
-    if (v->res == 'U')
+    if (v->res == 'U' || (v->res == 'u' && (v->ts == l || v->ts == j)))
         v_arg  = va_arg(ap, unsigned long);
-    else if (v->res == 'u' || (v->hes && (v->ts != l && v->ts != ll)))
+    else if ((v->res == 'u' && v->ts != ll) || (v->hes && (v->ts != l && v->ts != ll)))
         v_arg  = va_arg(ap, unsigned);
     else if (v->ts != l && v->ts != ll && v->ts != j)
+//    if (v->ts != l && v->ts != ll && v->ts != j) /* DELL */
         v_arg  = va_arg(ap, unsigned);
     else
         v_arg  = va_arg(ap, unsigned long long int);
     f_spec_the_size_for_x_and_X(&v_arg, v);
     (v->l = f_width(v, v_arg));
     if (v->res == 'u' || v->res == 'U')
-        argv = f_itoa(v_arg);
+        argv = ft_itoa_base(v_arg, 10, v->res);
     else
         argv = ft_itoa_base(v_arg, 16, v->res);
     f_handl_x_X(v, v_arg, argv);
@@ -118,3 +120,12 @@ static int 		f_width(t_var *v,unsigned long long int v_arg)
     }
 
 }
+
+//static int      f_if_u_U(t_var *v, unsigned long long int *v_arg, va_list ap)
+//{
+//    if (v->res == 'U' )
+//        v_arg  = va_arg(ap, unsigned long);
+//    else if (v->res == 'u' || (v->hes && (v->ts != l && v->ts != ll)))
+//        v_arg  = va_arg(ap, unsigned);
+//    return (1);
+//}

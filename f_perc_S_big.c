@@ -18,11 +18,6 @@ int f_perc_S_big(va_list ap, const char **format, t_var *v)
 	v->w = f_find_weight(format, v->res, ap);
 	f_find_precision(format, v->res, ap, v);
 	str = va_arg(ap, wchar_t *);
-//	if (!(str = va_arg(ap, wchar_t *)))
-//	{
-//		(**format != '\0' && **format == v->res) && (*format)++;				/* UNDEFINED BEHAVIOUR */
-//		return (write(1, "(null)", 6) && (v->bp += 6));
-//	}
 	f_find_bytes(v, str);
 	if (MB_CUR_MAX != 4 && v->cur_max == 1)
 	{
@@ -95,7 +90,7 @@ static void f_find_precision(const char **format, char c, va_list ap, t_var *v)
 static int f_find_bytes(t_var *v, wchar_t *str)
 {
 	v->l = 0;
-		while (*str)
+		while (str && *str)
 		{
 			v->i = *str++;
 			if (v->i <= 127)
@@ -106,8 +101,6 @@ static int f_find_bytes(t_var *v, wchar_t *str)
 				(v->l += 3) && (v->cur_max = 1);
 			else
 				(v->l += 4) && (v->cur_max = 1);
-			if (v->p >= v->l)
-				(v->p -= v->l);
 			if (v->l >= v->p && v->p > 0)
 			{
 				v->p = v->l;
@@ -121,7 +114,7 @@ static int f_find_bytes(t_var *v, wchar_t *str)
 
 static void f_S_ls_print(t_var *v, wchar_t *str, wchar_t res)
 {
-	while(*str)
+	while(str && *str)
 	{
 		v->i = *str++;
 		if (v->i <= 127 && v->p >= 1)

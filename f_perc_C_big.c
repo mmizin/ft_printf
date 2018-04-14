@@ -27,6 +27,8 @@ int     f_perc_C_big(va_list ap, const char **format, t_var *v)
 	else if (v->w < 0)
 			v->sign = (v->w * -1) > v->l ? (v->w * -1) - v->l : 0;
 	f_C_ls_print(v, res);
+	while (**format != v->res)
+		(*format)++;
 	(**format != '\0') && (*format)++;
 	f_reset_init(v);
 	return (1);

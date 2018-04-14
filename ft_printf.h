@@ -7,9 +7,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "locale.h"
-# include "wchar.h"
+# include <locale.h>
+# include <wchar.h>
 # include <stdio.h>
+#include <limits.h>
 
 
 typedef enum			e_size_specificators
